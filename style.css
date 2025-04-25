@@ -19,20 +19,27 @@
     font-family: 'segoe ui', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    padding: 20px;
+    padding: 10px;
 }
 
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 15px;
 }
 
 header {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 20px;
     padding: 16px;
@@ -44,16 +51,19 @@ header {
 .header-left {
     display: flex;
     flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
 .header-logo {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .header-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
     font-family: 'apple gramond';
     margin-bottom: 6px;
@@ -67,14 +77,17 @@ header {
 
 .main-stats {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+    width: 100%;
 }
 
 .stat-card {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 12px 16px;
-    min-width: 120px;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 100px;
 }
 
 .stat-label {
@@ -84,7 +97,7 @@ header {
 }
 
 .stat-value {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
@@ -95,11 +108,12 @@ header {
     border-radius: 4px;
     font-size: 0.7rem;
     margin-left: 5px;
+    display: inline-block;
 }
 
 .dashboard {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
@@ -107,15 +121,15 @@ header {
     background-color: var(--card-bg);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 15px;
     margin-bottom: 20px;
     position: relative;
+    width: 100%;
 }
 
 .card-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     margin-bottom: 15px;
 }
 
@@ -123,11 +137,14 @@ header {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-color);
+    margin-bottom: 10px;
 }
 
 .card-actions {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .time-selector {
@@ -244,8 +261,9 @@ input, select {
 
 .chart-container {
     width: 100%;
-    height: 300px;
+    height: 250px;
     position: relative;
+    overflow-x: auto;
 }
 
 .status-indicator {
@@ -278,6 +296,8 @@ input, select {
     padding: 12px;
     margin-top: 20px;
     border-radius: 6px;
+    width: 100%;
+    text-align: center;
 }
 
 .emergency-stop:hover {
@@ -291,8 +311,8 @@ input, select {
 }
 
 .donut-chart {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto;
     position: relative;
 }
@@ -306,19 +326,25 @@ input, select {
 }
 
 .donut-value {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
 .donut-label {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: var(--text-secondary);
 }
 
 /* Data table */
+.data-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 500px;
 }
 
 .data-table th, .data-table td {
@@ -360,7 +386,7 @@ input, select {
 
 .setup-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 15px;
 }
 
@@ -439,8 +465,7 @@ input:checked + .slider:before {
     background-color: rgba(255, 255, 255, 0.05);
     padding: 10px;
     border-radius: 8px;
-    min-width: 140px;
-    flex: 1 1 30%;
+    flex: 1 1 100%;
 }
 
 .metric-icon {
@@ -470,26 +495,140 @@ input:checked + .slider:before {
 
 .table-container {
     background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    overflow-x: auto;
 }
 
-@media (max-width: 768px) {
-    .dashboard {
-        grid-template-columns: 1fr;
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    body {
+        padding: 15px;
+    }
+    
+    .header-logo {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .header-title {
+        font-size: 1.4rem;
+    }
+    
+    .stat-card {
+        flex: 1 1 calc(33.333% - 10px);
+    }
+    
+    .metric-item {
+        flex: 1 1 calc(50% - 10px);
     }
     
     .setup-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
+/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    .performance-layout {
+    body {
+        padding: 20px;
+    }
+    
+    header {
         flex-direction: row;
         align-items: center;
+    }
+    
+    .header-left {
+        margin-bottom: 0;
+        width: auto;
+    }
+    
+    .header-logo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0;
+    }
+    
+    .card-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .card-title {
+        margin-bottom: 0;
+    }
+    
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .donut-chart {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .donut-value {
+        font-size: 1.8rem;
+    }
+    
+    .chart-container {
+        height: 300px;
+    }
+    
+    .metric-item {
+        flex: 1 1 calc(33.333% - 10px);
+    }
+    
+    .performance-layout {
+        flex-direction: row;
     }
     
     .performance-metrics {
         flex-direction: column;
         align-items: stretch;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .stat-card {
+        flex: 1 1 auto;
+    }
+    
+    .header-title {
+        font-size: 1.5rem;
+    }
+    
+    .donut-chart {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .donut-value {
+        font-size: 2rem;
+    }
+    
+    .metric-item {
+        flex: 1 1 30%;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .header-title {
+        font-size: 1.8rem;
+    }
+    
+    .header-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .stat-value {
+        font-size: 1.2rem;
     }
 }
